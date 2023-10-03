@@ -16,16 +16,29 @@ class _AuthPageState extends State<AuthPage> {
   bool _isloading = false;
 
   void _handleSubmit(UserAuthIdentity formData) {
-    setState(() {
-      _isloading = true;
-    });
 
-    print(formData.email);
-    print(formData.password);
 
-    setState(() {
-      _isloading = false;
-    });
+    try {
+      setState(() {
+        _isloading = true;
+
+      });
+
+      if (formData.isLogin) {
+        // TODO
+      } else {
+        // TODO
+      }
+
+
+    }  catch (e) {
+  // TODO
+    } finally {
+      setState(() {
+        _isloading = false;
+      });
+    }    
+
   }
 
   @override
