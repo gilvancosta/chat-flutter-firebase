@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:chat_flutter_firebase/app/domain/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/identities/user_auth_identity.dart';
@@ -15,7 +16,7 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   bool _isloading = false;
 
-  void _handleSubmit(UserAuthIdentity formData) {
+ Future<void>_handleSubmit(UserAuthIdentity formData)  async  {
 
 
     try {
@@ -25,9 +26,17 @@ class _AuthPageState extends State<AuthPage> {
       });
 
       if (formData.isLogin) {
-        // TODO
+        await AuthService().login(
+          formData.email,
+          formData.password,
+        );
       } else {
-        // TODO
+        await AuthService().signup(
+          formData.name,
+          formData.email,
+          formData.password,
+          formData.image,
+        );
       }
 
 

@@ -5,14 +5,22 @@ import 'dart:math';
 import '../../identities/user_identity.dart';
 import 'auth_service.dart';
 
-
 class AuthMockService implements AuthService {
-  static final Map<String, UserIdentity> _users = {};
+  static final _defaultUser = UserIdentity(
+    id: '1',
+    name: 'John Doe',
+    email: 'gilvan@teste.com.br',
+    imageUrl: '/assets/images/avatar.png',
+  );
+
+  static final Map<String, UserIdentity> _users = {
+    _defaultUser.email: _defaultUser,
+  };
   static UserIdentity? _currentUser;
   static MultiStreamController<UserIdentity?>? _controller;
   static final _userStream = Stream<UserIdentity?>.multi((controller) {
     _controller = controller;
-    _updateUser(null);
+    _updateUser(_defaultUser);
   });
 
   @override
@@ -36,7 +44,7 @@ class AuthMockService implements AuthService {
       id: Random().nextDouble().toString(),
       name: name,
       email: email,
-      imageUrl: image?.path ?? '/assets/images/...',
+      imageUrl: image?.path ?? '/assets/images/avatar.png',
     );
 
     _users.putIfAbsent(email, () => newUser);
