@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: avoid_print
 
+import 'dart:io';
+
+import 'package:chat_flutter_firebase/app/ui/pages/auth/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/identities/user_auth_identity.dart';
@@ -18,93 +21,104 @@ class AuthFormWidget extends StatefulWidget {
 }
 
 class _AuthFormWidgetState extends State<AuthFormWidget> {
-  final _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final _formData = UserAuthIdentity();
 
-  void _submit() {
-    final isValid = _formkey.currentState?.validate() ?? false;
+  void _handleImagePick(File image) {
+    _formData.image = image;
+  }
 
-    if (!isValid) {
-      return;
+  void _showError(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        backgroundColor: Theme.of(context).colorScheme.error,
+      ),
+    );
+  }
+
+  void _submit() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+    if (!isValid) return;
+
+    if (_formData.image == null && _formData.isSignup) {
+      return _showError('Imagem não selecionada!');
     }
 
     widget.onSubmit(_formData);
-
-    _formkey.currentState?.save();
-    print(_formData.email);
-    print(_formData.password);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        margin: const EdgeInsets.all(20),
-        elevation: 10,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-            key: _formkey,
-            child: Column(
-              children: [
-                if (_formData.isSignup)
-                  TextFormField(
-                    key: const ValueKey('name'),
-                    initialValue: _formData.name,
-                    onChanged: (value) => _formData.name = value,
-                    decoration: const InputDecoration(labelText: 'Nome'),
-                    validator: (value) {
-                      final nameValue = value ?? '';
-                      if (nameValue.trim().length < 4) {
-                        return 'Nome deve ter pelo menos 4 caracteres';
-                      }
-                      return null;
-                    },
-                  ),
+    return Card(
+      margin: const EdgeInsets.all(20),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              if (_formData.isSignup)
+                UserImageWidget(
+                  onImagePick: _handleImagePick,
+                ),
+              if (_formData.isSignup)
                 TextFormField(
-                  key: const ValueKey('email'),
-                  initialValue: _formData.email,
-                  onChanged: (value) => _formData.email = value,
-                  decoration: const InputDecoration(labelText: 'E-mail'),
-                  validator: (value) {
-                    final emailValue = value ?? '';
-                    if (emailValue.trim().isEmpty || !emailValue.contains('@')) {
-                      return 'E-mail inválido';
+                  key: const ValueKey('name'),
+                  initialValue: _formData.name,
+                  onChanged: (name) => _formData.name = name,
+                  decoration: const InputDecoration(labelText: 'Nome'),
+                  validator: (localName) {
+                    final name = localName ?? '';
+                    if (name.trim().length < 5) {
+                      return 'Nome deve ter no mínimo 5 caracteres.';
                     }
                     return null;
                   },
                 ),
-                TextFormField(
-                  key: const ValueKey('password'),
-                  initialValue: _formData.password,
-                  onChanged: (value) => _formData.password = value,
-                  obscureText: true,
-                  decoration: const InputDecoration(labelText: 'Senha'),
-                  validator: (value) {
-                    final passwordValue = value ?? '';
-                    if (passwordValue.trim().isEmpty || passwordValue.trim().length < 6) {
-                      return 'Senha deve ter pelo menos 6 caracteres';
-                    }
-                    return null;
-                  },
+              TextFormField(
+                key: const ValueKey('email'),
+                initialValue: _formData.email,
+                onChanged: (email) => _formData.email = email,
+                decoration: const InputDecoration(labelText: 'E-mail'),
+                validator: (localEmail) {
+                  final email = localEmail ?? '';
+                  if (!email.contains('@')) {
+                    return 'E-mail nformado não é válido.';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                key: const ValueKey('password'),
+                initialValue: _formData.password,
+                onChanged: (password) => _formData.password = password,
+                obscureText: true,
+                decoration: const InputDecoration(labelText: 'Senha'),
+                validator: (localPassword) {
+                  final password = localPassword ?? '';
+                  if (password.length < 6) {
+                    return 'Nome deve ter no mínimo 6 caracteres.';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 12),
+              ElevatedButton(
+                onPressed: _submit,
+                child: Text(_formData.isLogin ? 'Entrar' : 'Cadastrar'),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    _formData.toggleAuthMode();
+                  });
+                },
+                child: Text(
+                  _formData.isLogin ? 'Criar uma nova conta?' : 'Já possui conta?',
                 ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _submit,
-                  child: Text(_formData.isLogin ? 'Entrar' : 'Cadastrar'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _formData.toggleAuthMode();
-                    });
-                  },
-                  child: Text(
-                    _formData.isLogin ? 'Criar uma nova conta?' : 'Já possui conta?',
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

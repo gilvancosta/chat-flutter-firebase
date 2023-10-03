@@ -13,18 +13,40 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
+  bool _isloading = false;
+
   void _handleSubmit(UserAuthIdentity formData) {
+    setState(() {
+      _isloading = true;
+    });
+
     print(formData.email);
     print(formData.password);
+
+    setState(() {
+      _isloading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         // backgroundColor: Colors.blueGrey[300],
-        body: Center(
-            child: SingleChildScrollView(
-      child: AuthFormWidget(onSubmit: _handleSubmit),
-    )));
+        body: Stack(
+      children: [
+        Center(
+          child: SingleChildScrollView(
+            child: AuthFormWidget(onSubmit: _handleSubmit),
+          ),
+        ),
+        if (_isloading)
+          Container(
+            color: Colors.black.withOpacity(0.5),
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+      ],
+    ));
   }
 }
