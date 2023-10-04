@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:chat_flutter_firebase/app/domain/services/auth/auth_mock_service.dart';
 
-import '../../identities/user_identity.dart';
+import '../../entities/chat/chat_user_identity.dart';
 
 abstract class AuthService {
-  UserIdentity? get currentUser;
+  ChatUserIdentity? get currentUser;
 
-  Stream<UserIdentity?> get userChanges;
+  Stream<ChatUserIdentity?> get userChanges;
 
   Future<void> signup(
     String name,

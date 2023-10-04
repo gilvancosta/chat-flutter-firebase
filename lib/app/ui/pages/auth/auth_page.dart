@@ -3,7 +3,7 @@
 import 'package:chat_flutter_firebase/app/domain/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/identities/user_auth_identity.dart';
+import '../../../domain/entities/auth/user_auth_identity.dart';
 import 'widgets/auth_form_widget.dart';
 
 class AuthPage extends StatefulWidget {

@@ -6,7 +6,7 @@ import 'dart:io';
 import 'package:chat_flutter_firebase/app/ui/pages/auth/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/identities/user_auth_identity.dart';
+import '../../../../domain/entities/auth/user_auth_identity.dart';
 
 class AuthFormWidget extends StatefulWidget {
   final void Function(UserAuthIdentity) onSubmit;

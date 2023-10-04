@@ -11,11 +11,36 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shop Chat'),
+        actions: [
+          DropdownButton(
+            underline: Container(),
+            icon: const Icon(Icons.more_vert),
+            items: const [
+              DropdownMenuItem(
+                value: 'logout',
+                child: Row(
+                  children: [
+                    Icon(Icons.exit_to_app),
+                    SizedBox(width: 8),
+                    Text('Logout'),
+                  ],
+                ),
+              ),
+            ],
+            onChanged: (itemIdentifier) {
+              if (itemIdentifier == 'logout') {
+                AuthService().logout();
+              }
+            },
+          ),
+        ],
       ),
       body: const SafeArea(
         child: Column(
           children: [
-            MessagesWidget(),
+            Expanded(
+              child: MessagesWidget(),
+            ),
             NewMessageWidget(),
           ],
         ),
