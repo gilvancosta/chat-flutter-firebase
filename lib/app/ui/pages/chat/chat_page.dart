@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/controllers/chat_notification_service.dart';
-import '../../../domain/services/auth/auth_service.dart';
+
+import '../../../domain/services/auth/user_service.dart';
 import 'notification_page.dart';
 import 'widgets/messages_widget.dart';
 import 'widgets/new_message_widget.dart';
@@ -39,7 +40,7 @@ class ChatPage extends StatelessWidget {
               ],
               onChanged: (value) {
                 if (value == 'logout') {
-                  AuthService().logout();
+                  UserService().logout();
                 }
               },
             ),

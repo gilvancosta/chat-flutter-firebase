@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:chat_flutter_firebase/app/domain/services/auth/auth_mock_service.dart';
+import 'package:chat_flutter_firebase/app/data/mock/user_mock.dart';
 
 import '../../entities/user/user_identity.dart';
 
-abstract class AuthService {
+abstract class UserService {
   UserIdentity? get currentUser;
 
   Stream<UserIdentity?> get userChanges;
@@ -23,8 +23,8 @@ abstract class AuthService {
 
   Future<void> logout();
 
-factory AuthService() {
-  return AuthMockService();
+factory UserService() {
+  return UserMock();
 }
 
 

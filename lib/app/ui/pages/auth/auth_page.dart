@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:chat_flutter_firebase/app/domain/services/auth/auth_service.dart';
+import 'package:chat_flutter_firebase/app/domain/services/auth/user_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/auth_form/auth_form_identity.dart';
@@ -23,12 +23,12 @@ class _AuthPageState extends State<AuthPage> {
       });
 
       if (formData.isLogin) {
-        await AuthService().login(
+        await UserService().login(
           formData.email,
           formData.password,
         );
       } else {
-        await AuthService().signup(
+        await UserService().signup(
           formData.name,
           formData.email,
           formData.password,

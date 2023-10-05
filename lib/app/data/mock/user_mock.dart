@@ -2,10 +2,10 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:math';
 
-import '../../entities/user/user_identity.dart';
-import 'auth_service.dart';
+import '../../domain/entities/user/user_identity.dart';
+import '../../domain/services/auth/user_service.dart';
 
-class AuthMockService implements AuthService {
+class UserMock implements UserService {
   static final _defaultUser = UserIdentity(
     id: '1',
     name: 'John Doe',
@@ -34,12 +34,7 @@ class AuthMockService implements AuthService {
   }
 
   @override
-  Future<void> signup(
-    String name,
-    String email,
-    String password,
-    File? image,
-  ) async {
+  Future<void> signup(String name, String email, String password, File? image) async {
     final newUser = UserIdentity(
       id: Random().nextDouble().toString(),
       name: name,

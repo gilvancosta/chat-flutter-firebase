@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-import '../../../../domain/services/auth/auth_service.dart';
+import '../../../../domain/services/auth/user_service.dart';
 import '../../../../domain/services/chat/chat_service.dart';
 
 
@@ -18,7 +18,7 @@ class _NewMessageState extends State<NewMessageWidget> {
   final _messageController = TextEditingController();
 
   Future<void> _sendMessage() async {
-    final user = AuthService().currentUser;
+    final user = UserService().currentUser;
 
     if (user != null) {
       await ChatService().save(_message, user);
