@@ -3,7 +3,7 @@
 import 'package:chat_flutter_firebase/app/domain/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/auth/user_auth_identity.dart';
+import '../../../domain/entities/auth_form/auth_form_identity.dart';
 import 'widgets/auth_form_widget.dart';
 
 class AuthPage extends StatefulWidget {
@@ -16,13 +16,10 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   bool _isloading = false;
 
- Future<void>_handleSubmit(UserAuthIdentity formData)  async  {
-
-
+  Future<void> _handleSubmit(AuthFormIdentity formData) async {
     try {
       setState(() {
         _isloading = true;
-
       });
 
       if (formData.isLogin) {
@@ -38,37 +35,34 @@ class _AuthPageState extends State<AuthPage> {
           formData.image,
         );
       }
-
-
-    }  catch (e) {
-  // TODO
+    } catch (e) {
+      // TODO
     } finally {
       setState(() {
         _isloading = false;
       });
-    }    
-
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: Colors.blueGrey[300],
+        backgroundColor: Theme.of(context).primaryColor,
         body: Stack(
-      children: [
-        Center(
-          child: SingleChildScrollView(
-            child: AuthFormWidget(onSubmit: _handleSubmit),
-          ),
-        ),
-        if (_isloading)
-          Container(
-            color: Colors.black.withOpacity(0.5),
-            child: const Center(
-              child: CircularProgressIndicator(),
+          children: [
+            Center(
+              child: SingleChildScrollView(
+                child: AuthFormWidget(onSubmit: _handleSubmit),
+              ),
             ),
-          )
-      ],
-    ));
+            if (_isloading)
+              Container(
+                color: Colors.black.withOpacity(0.5),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+          ],
+        ));
   }
 }

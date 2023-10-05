@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 import '../../entities/chat/chat_message_entity.dart';
-import '../../entities/chat/chat_user_identity.dart';
+
+import '../../entities/user/user_identity.dart';
 import 'chat_service.dart';
 
 class ChatMockService implements ChatService {
@@ -45,7 +46,7 @@ class ChatMockService implements ChatService {
   }
 
   @override
-  Future<ChatMessageEntity> save(String text, ChatUserIdentity user) async {
+  Future<ChatMessageEntity> save(String text, UserIdentity user) async {
     final newMessage = ChatMessageEntity(
       id: Random().nextDouble().toString(),
       text: text,

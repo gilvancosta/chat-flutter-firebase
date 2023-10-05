@@ -6,10 +6,10 @@ import 'dart:io';
 import 'package:chat_flutter_firebase/app/ui/pages/auth/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/auth/user_auth_identity.dart';
+import '../../../../domain/entities/auth_form/auth_form_identity.dart';
 
 class AuthFormWidget extends StatefulWidget {
-  final void Function(UserAuthIdentity) onSubmit;
+  final void Function(AuthFormIdentity) onSubmit;
 
   const AuthFormWidget({
     Key? key,
@@ -22,7 +22,7 @@ class AuthFormWidget extends StatefulWidget {
 
 class _AuthFormWidgetState extends State<AuthFormWidget> {
   final _formKey = GlobalKey<FormState>();
-  final _formData = UserAuthIdentity();
+  final _formData = AuthFormIdentity();
 
   void _handleImagePick(File image) {
     _formData.image = image;
@@ -90,7 +90,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                 },
               ),
               TextFormField(
-                key: const ValueKey('password'),
+                key: const ValueKey('password'), // O objetivo desse key é para o teste automatizado
                 initialValue: _formData.password,
                 onChanged: (password) => _formData.password = password,
                 obscureText: true,

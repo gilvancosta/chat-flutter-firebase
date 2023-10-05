@@ -14,12 +14,15 @@ class LoadingPage extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               // LinearProgressIndicator()
               // RefreshProgressIndicator()
-              // CircularProgressIndicator(),
+              CircularProgressIndicator(),
               SizedBox(height: 20),
-              Text('Loading...', style: Theme.of(context).textTheme.titleLarge),
+              Text(
+                'Loading...',
+                style: TextStyle(fontSize: 20),
+              ),
             ],
           ),
         ));

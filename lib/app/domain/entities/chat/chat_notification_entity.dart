@@ -1,8 +1,8 @@
-class ChatNotification {
+class ChatNotificationEntity {
   final String title;
   final String body;
 
-  const ChatNotification({
+  const ChatNotificationEntity({
     required this.title,
     required this.body,
   });

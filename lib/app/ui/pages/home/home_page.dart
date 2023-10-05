@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/chat/chat_user_identity.dart';
+import '../../../domain/entities/user/user_identity.dart';
 
 import '../../../domain/services/auth/auth_service.dart';
 import '../auth/auth_page.dart';
@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<ChatUserIdentity?>(
+      body: StreamBuilder<UserIdentity?>(
         stream: AuthService().userChanges,
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

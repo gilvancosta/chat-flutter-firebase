@@ -1,35 +1,35 @@
 import 'dart:io';
- import 'dart:async';
+import 'dart:async';
 import 'dart:math';
 
-import '../../entities/chat/chat_user_identity.dart';
+import '../../entities/user/user_identity.dart';
 import 'auth_service.dart';
 
 class AuthMockService implements AuthService {
-  static final _defaultUser = ChatUserIdentity(
+  static final _defaultUser = UserIdentity(
     id: '1',
     name: 'John Doe',
     email: 'gilvan@teste.com.br',
     imageUrl: '/assets/images/avatar.png',
   );
 
-  static final Map<String, ChatUserIdentity> _users = {
+  static final Map<String, UserIdentity> _users = {
     _defaultUser.email: _defaultUser,
   };
-  static ChatUserIdentity? _currentUser;
-  static MultiStreamController<ChatUserIdentity?>? _controller;
-  static final _userStream = Stream<ChatUserIdentity?>.multi((controller) {
+  static UserIdentity? _currentUser;
+  static MultiStreamController<UserIdentity?>? _controller;
+  static final _userStream = Stream<UserIdentity?>.multi((controller) {
     _controller = controller;
     _updateUser(_defaultUser);
   });
 
   @override
-  ChatUserIdentity? get currentUser {
+  UserIdentity? get currentUser {
     return _currentUser;
   }
 
   @override
-  Stream<ChatUserIdentity?> get userChanges {
+  Stream<UserIdentity?> get userChanges {
     return _userStream;
   }
 
@@ -40,7 +40,7 @@ class AuthMockService implements AuthService {
     String password,
     File? image,
   ) async {
-    final newUser = ChatUserIdentity(
+    final newUser = UserIdentity(
       id: Random().nextDouble().toString(),
       name: name,
       email: email,
@@ -61,7 +61,7 @@ class AuthMockService implements AuthService {
     _updateUser(null);
   }
 
-  static void _updateUser(ChatUserIdentity? user) {
+  static void _updateUser(UserIdentity? user) {
     _currentUser = user;
     _controller?.add(_currentUser);
   }
