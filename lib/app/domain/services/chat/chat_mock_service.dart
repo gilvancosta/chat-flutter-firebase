@@ -5,7 +5,33 @@ import '../../entities/chat/chat_user_identity.dart';
 import 'chat_service.dart';
 
 class ChatMockService implements ChatService {
-  static final List<ChatMessageEntity> _msgs = [];
+  static final List<ChatMessageEntity> _msgs = [
+    ChatMessageEntity(
+      id: '1',
+      text: 'Bom dia',
+      createdAt: DateTime.now(),
+      userId: '1',
+      userName: 'gilvan',
+      userImageUrl: '/assets/images/avatar.png',
+    ),
+    ChatMessageEntity(
+      id: '2',
+      text: 'Olá, tudo bem?',
+      createdAt: DateTime.now(),
+      userId: '124',
+      userName: 'Bianca',
+      userImageUrl: '/assets/images/avatar.png',
+    ),
+    ChatMessageEntity(
+      id: '3',
+      text: 'Sim! hoje teremos reunião.',
+      createdAt: DateTime.now(),
+      userId: '125',
+      userName: 'Ana',
+      userImageUrl: '/assets/images/avatar.png',
+    ),
+  ];
+
   static MultiStreamController<List<ChatMessageEntity>>? _controller;
 
   static final _msgsStream = Stream<List<ChatMessageEntity>>.multi((controller) {
@@ -17,7 +43,6 @@ class ChatMockService implements ChatService {
   Stream<List<ChatMessageEntity>> messagesStream() {
     return _msgsStream;
   }
-
 
   @override
   Future<ChatMessageEntity> save(String text, ChatUserIdentity user) async {
@@ -33,5 +58,4 @@ class ChatMockService implements ChatService {
     _controller?.add(_msgs.reversed.toList());
     return newMessage;
   }
-
 }

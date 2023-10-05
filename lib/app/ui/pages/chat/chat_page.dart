@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../domain/controllers/chat_notification_service.dart';
 import '../../../domain/services/auth/auth_service.dart';
+import 'notification_page.dart';
 import 'widgets/messages_widget.dart';
 import 'widgets/new_message_widget.dart';
 
@@ -10,41 +14,86 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shop Chat'),
+        title: const Text('Cod3r Chat'),
         actions: [
-          DropdownButton(
-            underline: Container(),
-            icon: const Icon(Icons.more_vert),
-            items: const [
-              DropdownMenuItem(
-                value: 'logout',
-                child: Row(
-                  children: [
-                    Icon(Icons.exit_to_app),
-                    SizedBox(width: 8),
-                    Text('Logout'),
-                  ],
+          DropdownButtonHideUnderline(
+            child: DropdownButton(
+              icon: Icon(
+                Icons.more_vert,
+                color: Theme.of(context).primaryIconTheme.color,
+              ),
+              items: const [
+                DropdownMenuItem(
+                  value: 'logout',
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.exit_to_app,
+                        color: Colors.black87,
+                      ),
+                      SizedBox(width: 10),
+                      Text('Sair'),
+                    ],
+                  ),
+                ),
+              ],
+              onChanged: (value) {
+                if (value == 'logout') {
+                  AuthService().logout();
+                }
+              },
+            ),
+          ),
+          Stack(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) {
+                      return const NotificationPage();
+                    }),
+                  );
+                },
+              ),
+              Positioned(
+                top: 5,
+                right: 5,
+                child: CircleAvatar(
+                  maxRadius: 10,
+                  backgroundColor: Colors.red.shade800,
+                  child: Text(
+                    '${Provider.of<ChatNotificationService>(context).itemsCount}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
                 ),
               ),
             ],
-            onChanged: (itemIdentifier) {
-              if (itemIdentifier == 'logout') {
-                AuthService().logout();
-              }
-            },
           ),
         ],
       ),
       body: const SafeArea(
         child: Column(
           children: [
-            Expanded(
-              child: MessagesWidget(),
-            ),
-            NewMessageWidget(),
+            Expanded(child: MessagesWidget()),
+           NewMessageWidget(),
           ],
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.add),
+      //   onPressed: () {
+      //     Provider.of<ChatNotificationService>(
+      //       context,
+      //       listen: false,
+      //     ).add(ChatNotification(
+      //       title: 'Mais uma notificação!',
+      //       body: Random().nextDouble().toString(),
+      //     ));
+      //   },
+      // ),
     );
   }
 }
