@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:chat_flutter_firebase/app/data/mock/user_mock.dart';
+import 'package:chat_flutter_firebase/app/data/mock/user/user_mock.dart';
 
 import '../../entities/user/user_identity.dart';
 

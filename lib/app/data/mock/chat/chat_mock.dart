@@ -1,18 +1,18 @@
 import 'dart:async';
 import 'dart:math';
-import '../../entities/chat/chat_message_entity.dart';
+import '../../../domain/entities/chat/chat_message_entity.dart';
 
-import '../../entities/user/user_identity.dart';
-import 'chat_service.dart';
+import '../../../domain/entities/user/user_identity.dart';
+import '../../../domain/services/chat/chat_service.dart';
 
-class ChatMockService implements ChatService {
+class ChatMock implements ChatService {
   static final List<ChatMessageEntity> _msgs = [
     ChatMessageEntity(
       id: '1',
       text: 'Bom dia',
       createdAt: DateTime.now(),
       userId: '1',
-      userName: 'gilvan',
+      userName: 'John',
       userImageUrl: '/assets/images/avatar.png',
     ),
     ChatMessageEntity(

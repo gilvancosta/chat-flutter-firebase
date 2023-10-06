@@ -2,14 +2,14 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:math';
 
-import '../../domain/entities/user/user_identity.dart';
-import '../../domain/services/auth/user_service.dart';
+import '../../../domain/entities/user/user_identity.dart';
+import '../../../domain/services/auth/user_service.dart';
 
 class UserMock implements UserService {
   static final _defaultUser = UserIdentity(
     id: '1',
     name: 'John Doe',
-    email: 'gilvan@teste.com.br',
+    email: 'john@teste.com.br',
     imageUrl: '/assets/images/avatar.png',
   );
 
@@ -17,6 +17,7 @@ class UserMock implements UserService {
     _defaultUser.email: _defaultUser,
   };
   static UserIdentity? _currentUser;
+
   static MultiStreamController<UserIdentity?>? _controller;
   static final _userStream = Stream<UserIdentity?>.multi((controller) {
     _controller = controller;
