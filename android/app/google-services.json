@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "102648270177",
+    "project_id": "first-chat-eb0b9",
+    "storage_bucket": "first-chat-eb0b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102648270177:android:953d40d77cabdbba71c920",
+        "android_client_info": {
+          "package_name": "br.com.gilvancosta.chat_flutter_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwaNOx_Yg94AcNTc6IVIyuF3XjAAQYobg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

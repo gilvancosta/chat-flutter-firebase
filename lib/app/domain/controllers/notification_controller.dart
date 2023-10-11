@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../entities/notification/chat_notification_entity.dart';
+import '../entities/notification/notification_entity.dart';
 
-class ChatNotificationService with ChangeNotifier {
-  final List<ChatNotificationEntity> _items = [];
+class NotificationController with ChangeNotifier {
+  final List<NotificationEntity> _items = [];
 
   int get itemsCount {
     return _items.length;
   }
 
-  List<ChatNotificationEntity> get items {
+  List<NotificationEntity> get items {
     return [..._items];
   }
 
-  void add(ChatNotificationEntity notification) {
+  void add(NotificationEntity notification) {
     _items.add(notification);
     notifyListeners();
   }

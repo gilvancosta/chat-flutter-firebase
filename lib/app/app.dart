@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'domain/controllers/chat_notification_service.dart';
+import 'domain/controllers/notification_controller.dart';
 import 'ui/pages/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ChatNotificationService(),
+          create: (_) => NotificationController(),
         ),
       ],
       child: MaterialApp(
