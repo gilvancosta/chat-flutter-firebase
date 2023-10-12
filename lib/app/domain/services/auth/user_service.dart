@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:chat_flutter_firebase/app/data/mock/user/user_mock.dart';
 
+
+import '../../../data/firebase_repository/user/user_firebase_repository.dart';
 import '../../entities/user/user_identity.dart';
 
 abstract class UserService {
@@ -24,7 +25,9 @@ abstract class UserService {
   Future<void> logout();
 
 factory UserService() {
-  return UserMock();
+ // return UserMock();
+
+ return  UserFirebaseRepository();
 }
 
 

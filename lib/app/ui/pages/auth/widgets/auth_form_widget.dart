@@ -6,10 +6,10 @@ import 'dart:io';
 import 'package:chat_flutter_firebase/app/ui/pages/auth/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/auth/auth_identity.dart';
+import '../../../../domain/entities/auth/user_identity.dart';
 
 class AuthFormWidget extends StatefulWidget {
-  final void Function(AuthIdentity) onSubmit;
+  final void Function(UserIdentity) onSubmit;
 
   const AuthFormWidget({
     Key? key,
@@ -22,7 +22,7 @@ class AuthFormWidget extends StatefulWidget {
 
 class _AuthFormWidgetState extends State<AuthFormWidget> {
   final _formKey = GlobalKey<FormState>();
-  final _formData = AuthIdentity();
+  final _formData = UserIdentity();
 
   void _handleImagePick(File image) {
     _formData.image = image;

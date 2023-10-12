@@ -1,4 +1,4 @@
-import '../../entities/chat/chat_entity.dart';
+import '../../entities/chat/message_entity.dart';
 import '../../entities/user/user_identity.dart';
 import '../../../data/mock/chat/message_mock.dart';
 

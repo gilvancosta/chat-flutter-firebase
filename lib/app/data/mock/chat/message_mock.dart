@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:math';
-import '../../../domain/entities/chat/chat_entity.dart';
+import '../../../domain/entities/chat/message_entity.dart';
 
 import '../../../domain/entities/user/user_identity.dart';
 import '../../../domain/services/chat/chat_service.dart';
