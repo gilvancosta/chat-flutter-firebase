@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:chat_flutter_firebase/app/domain/entities/chat/chat_message_entity.dart';
+import 'package:chat_flutter_firebase/app/domain/entities/chat/chat_entity.dart';
 
 
 class MessageBubble extends StatelessWidget {
   static const _defaultImage = 'assets/images/avatar.png';
-  final ChatMessageEntity message;
+  final MessageEntity message;
   final bool belongsToCurrentUser;
 
   const MessageBubble({

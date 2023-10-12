@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:math';
-import '../../../domain/entities/chat/chat_message_entity.dart';
+import '../../../domain/entities/chat/chat_entity.dart';
 
 import '../../../domain/entities/user/user_identity.dart';
 import '../../../domain/services/chat/chat_service.dart';
 
-class ChatMock implements ChatService {
-  static final List<ChatMessageEntity> _msgs = [
-    ChatMessageEntity(
+class MessageMock implements MessageService {
+  static final List<MessageEntity> _msgs = [
+    MessageEntity(
       id: '1',
       text: 'Bom dia',
       createdAt: DateTime.now(),
@@ -15,7 +15,7 @@ class ChatMock implements ChatService {
       userName: 'John',
       userImageUrl: '/assets/images/avatar.png',
     ),
-    ChatMessageEntity(
+    MessageEntity(
       id: '2',
       text: 'Olá, tudo bem?',
       createdAt: DateTime.now(),
@@ -23,7 +23,7 @@ class ChatMock implements ChatService {
       userName: 'Bianca',
       userImageUrl: '/assets/images/avatar.png',
     ),
-    ChatMessageEntity(
+    MessageEntity(
       id: '3',
       text: 'Sim! hoje teremos reunião.',
       createdAt: DateTime.now(),
@@ -33,21 +33,21 @@ class ChatMock implements ChatService {
     ),
   ];
 
-  static MultiStreamController<List<ChatMessageEntity>>? _controller;
+  static MultiStreamController<List<MessageEntity>>? _controller;
 
-  static final _msgsStream = Stream<List<ChatMessageEntity>>.multi((controller) {
+  static final _msgsStream = Stream<List<MessageEntity>>.multi((controller) {
     _controller = controller;
     controller.add(_msgs);
   });
 
   @override
-  Stream<List<ChatMessageEntity>> messagesStream() {
+  Stream<List<MessageEntity>> messagesStream() {
     return _msgsStream;
   }
 
   @override
-  Future<ChatMessageEntity> save(String text, UserIdentity user) async {
-    final newMessage = ChatMessageEntity(
+  Future<MessageEntity> save(String text, UserIdentity user) async {
+    final newMessage = MessageEntity(
       id: Random().nextDouble().toString(),
       text: text,
       createdAt: DateTime.now(),

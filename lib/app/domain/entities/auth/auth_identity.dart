@@ -3,7 +3,7 @@ import 'dart:io';
 
 enum AuthModel { signup, login }
 
-class AuthFormIdentity {
+class AuthIdentity {
   String name = '';
   String email = '';
   String password = '';

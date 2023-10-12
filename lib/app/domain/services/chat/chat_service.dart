@@ -1,12 +1,12 @@
-import '../../entities/chat/chat_message_entity.dart';
+import '../../entities/chat/chat_entity.dart';
 import '../../entities/user/user_identity.dart';
-import '../../../data/mock/chat/chat_mock.dart';
+import '../../../data/mock/chat/message_mock.dart';
 
-abstract class ChatService {
-  Stream<List<ChatMessageEntity>> messagesStream();
-  Future<ChatMessageEntity> save(String texto, UserIdentity user);
+abstract class MessageService {
+  Stream<List<MessageEntity>> messagesStream();
+  Future<MessageEntity> save(String texto, UserIdentity user);
 
-  factory ChatService() {
-    return ChatMock();
+  factory MessageService() {
+    return MessageMock();
   }
 }

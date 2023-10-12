@@ -21,7 +21,7 @@ class _NewMessageState extends State<NewMessageWidget> {
     final user = UserService().currentUser;
 
     if (user != null) {
-      await ChatService().save(_message, user);
+      await MessageService().save(_message, user);
       _messageController.clear();
     }
   }

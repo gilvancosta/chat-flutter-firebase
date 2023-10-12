@@ -1,4 +1,4 @@
-class ChatMessageEntity {
+class MessageEntity {
   final String id;
   final String text;
   final DateTime createdAt;
@@ -7,7 +7,7 @@ class ChatMessageEntity {
   final String userName;
   final String userImageUrl;
 
-  ChatMessageEntity({
+  MessageEntity({
     required this.id,
     required this.text,
     required this.createdAt,

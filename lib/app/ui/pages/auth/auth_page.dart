@@ -3,7 +3,7 @@
 import 'package:chat_flutter_firebase/app/domain/services/auth/user_service.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/auth_form/auth_form_identity.dart';
+import '../../../domain/entities/auth/auth_identity.dart';
 import 'widgets/auth_form_widget.dart';
 
 class AuthPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   bool _isloading = false;
 
-  Future<void> _handleSubmit(AuthFormIdentity formData) async {
+  Future<void> _handleSubmit(AuthIdentity formData) async {
     try {
       setState(() {
         _isloading = true;
