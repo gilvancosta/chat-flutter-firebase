@@ -38,13 +38,15 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
   }
 
   void _submit() {
+    print('aqui 111');
+
     final isValid = _formKey.currentState?.validate() ?? false;
     if (!isValid) return;
 
     if (_formData.image == null && _formData.isSignup) {
       return _showError('Imagem não selecionada!');
     }
-
+    print('aqui 222');
     widget.onSubmit(_formData);
   }
 

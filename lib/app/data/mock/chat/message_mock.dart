@@ -6,32 +6,7 @@ import '../../../domain/entities/user/user_identity.dart';
 import '../../../domain/services/chat/chat_service.dart';
 
 class MessageMock implements MessageService {
-  static final List<MessageEntity> _msgs = [
-    MessageEntity(
-      id: '1',
-      text: 'Bom dia',
-      createdAt: DateTime.now(),
-      userId: '1',
-      userName: 'John',
-      userImageUrl: '/assets/images/avatar.png',
-    ),
-    MessageEntity(
-      id: '2',
-      text: 'Olá, tudo bem?',
-      createdAt: DateTime.now(),
-      userId: '124',
-      userName: 'Bianca',
-      userImageUrl: '/assets/images/avatar.png',
-    ),
-    MessageEntity(
-      id: '3',
-      text: 'Sim! hoje teremos reunião.',
-      createdAt: DateTime.now(),
-      userId: '125',
-      userName: 'Ana',
-      userImageUrl: '/assets/images/avatar.png',
-    ),
-  ];
+  static final List<MessageEntity> _msgs = [];
 
   static MultiStreamController<List<MessageEntity>>? _controller;
 
@@ -59,7 +34,7 @@ class MessageMock implements MessageService {
     _msgs.add(newMessage);
 
     _controller?.add(_msgs.reversed.toList());
-    
+
     return newMessage;
   }
 }

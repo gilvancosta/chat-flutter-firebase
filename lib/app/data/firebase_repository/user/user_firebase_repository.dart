@@ -30,8 +30,10 @@ class UserFirebaseRepository implements UserService {
   }
 
   @override
-  @override
   Future<void> signup(String name, String email, String password, File? image) async {
+
+    
+
     final auth = FirebaseAuth.instance;
     UserCredential credential = await auth.createUserWithEmailAndPassword(
       email: email,

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'domain/controllers/notification_controller.dart';
@@ -11,6 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+       Provider(create: (_) => Object()),
+        Provider(create: (_) => FirebaseAuth.instance),       
         ChangeNotifierProvider(
           create: (_) => NotificationController(),
         ),

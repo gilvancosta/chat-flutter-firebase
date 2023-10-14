@@ -17,17 +17,22 @@ class _AuthPageState extends State<AuthPage> {
   bool _isloading = false;
 
   Future<void> _handleSubmit(UserIdentity formData) async {
+    print('aqui 333');
     try {
       setState(() {
         _isloading = true;
       });
 
+      print('aqui 777');
+
       if (formData.isLogin) {
+        print('aqui 555');
         await UserService().login(
           formData.email,
           formData.password,
         );
       } else {
+        print('aqui 666');
         await UserService().signup(
           formData.name,
           formData.email,
@@ -36,7 +41,7 @@ class _AuthPageState extends State<AuthPage> {
         );
       }
     } catch (e) {
-      // TODO
+      print('aqui 777 $e');
     } finally {
       setState(() {
         _isloading = false;
