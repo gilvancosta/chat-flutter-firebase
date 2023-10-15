@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../domain/controllers/notification_controller.dart';
 
-import '../../../domain/services/auth/user_service.dart';
+import '../../../domain/services/user/user_service.dart';
 
 import '../notification/notification_page.dart';
 

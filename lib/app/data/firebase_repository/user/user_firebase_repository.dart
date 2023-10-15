@@ -6,17 +6,21 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../domain/entities/user/user_identity.dart';
-import '../../../domain/services/auth/user_service.dart';
+import '../../../domain/services/user/user_service.dart';
 
 class UserFirebaseRepository implements UserService {
   static UserIdentity? _currentUser;
 
   static final _userStream = Stream<UserIdentity?>.multi((controller) async {
+
     final authChanges = FirebaseAuth.instance.authStateChanges();
+
     await for (final user in authChanges) {
       _currentUser = user == null ? null : _toChatUser(user);
       controller.add(_currentUser);
     }
+
+
   });
 
   @override
@@ -30,9 +34,7 @@ class UserFirebaseRepository implements UserService {
   }
 
   @override
-  Future<void> signup(String name, String email, String password, File? image) async {
-
-    
+  Future<void> signup(String name, String email, String password, File? image) async {    
 
     final auth = FirebaseAuth.instance;
     UserCredential credential = await auth.createUserWithEmailAndPassword(
@@ -60,6 +62,11 @@ class UserFirebaseRepository implements UserService {
       email: email,
       password: password,
     );
+
+
+
+
+    
   }
 
   @override

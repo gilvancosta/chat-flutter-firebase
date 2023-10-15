@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:math';
 
 import '../../../domain/entities/user/user_identity.dart';
-import '../../../domain/services/auth/user_service.dart';
+import '../../../domain/services/user/user_service.dart';
 
 class UserMock implements UserService {
   static final _defaultUser = UserIdentity(

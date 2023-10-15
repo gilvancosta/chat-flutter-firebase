@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:chat_flutter_firebase/app/domain/services/auth/user_service.dart';
+import 'package:chat_flutter_firebase/app/domain/services/user/user_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/auth/user_identity.dart';

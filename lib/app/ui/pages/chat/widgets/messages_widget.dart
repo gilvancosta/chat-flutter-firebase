@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:chat_flutter_firebase/app/domain/entities/chat/message_entity.dart';
-import 'package:chat_flutter_firebase/app/domain/services/auth/user_service.dart';
-import 'package:chat_flutter_firebase/app/domain/services/chat/chat_service.dart';
+import 'package:chat_flutter_firebase/app/domain/entities/chat/chat_entity.dart';
+import 'package:chat_flutter_firebase/app/domain/services/user/user_service.dart';
+
 import 'package:chat_flutter_firebase/app/ui/pages/chat/widgets/message_bubble_widget.dart';
+
+import '../../../../domain/services/chat/chat_service.dart';
 
 class MessagesWidget extends StatelessWidget {
   const MessagesWidget({super.key});
@@ -11,8 +13,8 @@ class MessagesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentUser = UserService().currentUser;
-    return StreamBuilder<List<MessageEntity>>(
-      stream: MessageService().messagesStream(),
+    return StreamBuilder<List<ChatEntity>>(
+      stream: ChatService().messagesStream(),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());

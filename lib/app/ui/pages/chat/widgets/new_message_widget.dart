@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-import '../../../../domain/services/auth/user_service.dart';
+import '../../../../domain/services/user/user_service.dart';
 import '../../../../domain/services/chat/chat_service.dart';
 
 
@@ -21,7 +21,7 @@ class _NewMessageState extends State<NewMessageWidget> {
     final user = UserService().currentUser;
 
     if (user != null) {
-      await MessageService().save(_message, user);
+      await ChatService().save(_message, user);
       _messageController.clear();
     }
   }

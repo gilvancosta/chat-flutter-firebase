@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import '../../../data/firebase_repository/user/user_firebase_repository.dart';
-import '../../../data/mock/user/user_mock.dart';
 import '../../entities/user/user_identity.dart';
 
 abstract class UserService {
