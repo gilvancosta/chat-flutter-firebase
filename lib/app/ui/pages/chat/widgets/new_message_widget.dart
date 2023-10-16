@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: avoid_print
 
+import 'package:flutter/material.dart';
 
 import '../../../../domain/services/user/user_service.dart';
 import '../../../../domain/services/chat/chat_service.dart';
-
-
 
 class NewMessageWidget extends StatefulWidget {
   const NewMessageWidget({super.key});
@@ -22,6 +21,7 @@ class _NewMessageState extends State<NewMessageWidget> {
 
     if (user != null) {
       await ChatService().save(_message, user);
+     // print(msg?.id);
       _messageController.clear();
     }
   }

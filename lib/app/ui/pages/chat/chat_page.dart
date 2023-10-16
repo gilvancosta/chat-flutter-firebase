@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../domain/controllers/notification_controller.dart';
-
+import '../../../domain/services/notification/chat_notification_service.dart';
 import '../../../domain/services/user/user_service.dart';
 
 import '../notification/notification_page.dart';
@@ -66,7 +65,7 @@ class ChatPage extends StatelessWidget {
                   maxRadius: 10,
                   backgroundColor: Colors.red.shade800,
                   child: Text(
-                    '${Provider.of<NotificationController>(context).itemsCount}',
+                    '${Provider.of<ChatNotificationService>(context).itemsCount}',
                     style: const TextStyle(
                       fontSize: 12,
                     ),
@@ -81,7 +80,7 @@ class ChatPage extends StatelessWidget {
         child: Column(
           children: [
             Expanded(child: MessagesWidget()),
-           NewMessageWidget(),
+            NewMessageWidget(),
           ],
         ),
       ),
